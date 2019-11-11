@@ -206,6 +206,7 @@ class SubtypeVisitor(TypeVisitor[bool]):
         if state.strict_optional:
             return (isinstance(self.right, NoneType) or
                     is_named_instance(self.right, 'builtins.object') or
+                    is_named_instance(self.right, 'typing.Hashable') or
                     isinstance(self.right, Instance) and self.right.type.is_protocol and
                     not self.right.type.protocol_members)
         else:
